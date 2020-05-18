@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ducker-category-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: ducker-config-server
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
