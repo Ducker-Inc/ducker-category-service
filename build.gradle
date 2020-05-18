@@ -8,20 +8,14 @@ group = 'con.ducker'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-file('gradle-secrets.properties').withReader {
-    Properties props = new Properties()
-    props.load(it)
-    project.ext.gradleProps = props
-}
-
 repositories {
     mavenCentral()
     mavenLocal()
     maven {
         url = 'https://maven.pkg.github.com/ducker-inc/ducker-core'
         credentials {
-            username = project.gradleProps.getProperty('github.user.name') ?: System.getenv("USER_NAME")
-            password = project.gradleProps.getProperty('github.user.token') ?: System.getenv("USER_TOKEN")
+            username = project.findProperty('github.user.name') ?: System.getenv("USER_NAME")
+            password = project.findProperty('github.user.token') ?: System.getenv("USER_TOKEN")
         }
     }
 }
